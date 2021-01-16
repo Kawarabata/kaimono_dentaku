@@ -40,5 +40,16 @@ export default {
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    postcss: {
+      preset: {
+        features: {
+          'nesting-rules': true,
+        },
+        autoprefixer: {
+          grid: true,
+        },
+      },
+    },
+  },
 }
