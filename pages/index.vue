@@ -115,7 +115,7 @@ export default {
       this.$store.dispatch('removeFormula', index)
     },
     resetList() {
-      this.$store.commit('resetFormulaList')
+      this.$store.dispatch('resetFormulaList')
     },
   },
 }

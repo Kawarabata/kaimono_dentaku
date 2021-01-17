@@ -30,18 +30,12 @@ export const mutations = {
 export const actions = {
   addFormula(context, formula) {
     context.commit('addFormula', formula)
-    localStorage.setItem(
-      'formulaList',
-      JSON.stringify(context.state.formulaList)
-    )
+    context.dispatch('setFormulaListToLocalStorage')
   },
 
   removeFormula(context, index) {
     context.commit('removeFormula', index)
-    localStorage.setItem(
-      'formulaList',
-      JSON.stringify(context.state.formulaList)
-    )
+    context.dispatch('setFormulaListToLocalStorage')
   },
 
   setFormulaList(context) {
@@ -49,5 +43,17 @@ export const actions = {
       ? JSON.parse(localStorage.getItem('formulaList'))
       : []
     context.commit('setFormulaList', formulaList)
+  },
+
+  resetFormulaList(context) {
+    context.commit('resetFormulaList')
+    context.dispatch('setFormulaListToLocalStorage')
+  },
+
+  setFormulaListToLocalStorage(context) {
+    localStorage.setItem(
+      'formulaList',
+      JSON.stringify(context.state.formulaList)
+    )
   },
 }
