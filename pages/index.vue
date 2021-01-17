@@ -50,6 +50,15 @@
           >
             5桁までにしてください
           </span>
+          <span v-show="+price === 0 || +gram === 0" class="error-message">
+            0や空白はダメです
+          </span>
+          <span
+            v-show="price && gram && (price.match(/e/) || gram.match(/e/))"
+            class="error-message"
+          >
+            バグらせようとしてます？
+          </span>
           <button :disabled="isFormulaInvalid" @click="addFormula">
             比較リストに入れる
           </button>
@@ -87,8 +96,12 @@ export default {
       return (
         !this.price ||
         !this.gram ||
+        +this.price === 0 ||
+        +this.gram === 0 ||
         this.price.toString().length > 5 ||
-        this.gram.toString().length > 5
+        this.gram.toString().length > 5 ||
+        !!this.price.match(/e/) ||
+        !!this.gram.match(/e/)
       )
     },
   },
@@ -203,7 +216,7 @@ export default {
     left: 0;
     z-index: 10;
     width: 100%;
-    padding: 24px 12px 12px;
+    padding: 24px 12px;
     background-color: #e0f1f1;
 
     & .footer-container {
@@ -215,7 +228,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
 
       & input {
         padding: 8px 16px;
@@ -243,7 +256,7 @@ export default {
       }
 
       & button {
-        padding: 4px;
+        padding: 8px;
         color: #fff;
         background-color: #5188b1;
         border-radius: 4px;
