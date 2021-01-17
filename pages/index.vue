@@ -145,7 +145,7 @@ export default {
   }
 
   & ul {
-    padding: 24px 12px;
+    padding: 24px 12px 200px;
     max-width: 380px;
     margin: 0 auto;
   }
@@ -160,6 +160,7 @@ export default {
     left: 0;
     z-index: 10;
     width: 100%;
+    height: 160px;
     padding: 24px 12px;
     background-color: #e0f1f1;
 
