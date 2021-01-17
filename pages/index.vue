@@ -172,18 +172,24 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
 
       & input {
         padding: 8px 16px;
         width: 20%;
+        height: 42px;
         border: none;
         border-radius: 4px;
+        font-size: 16px;
       }
 
       & .result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 4px 8px;
         min-width: 20%;
+        height: 42px;
         background-color: #fff;
         border-radius: 4px;
       }
@@ -200,7 +206,7 @@ export default {
       }
 
       & button {
-        padding: 8px;
+        padding: 12px;
         color: #fff;
         background-color: #5188b1;
         border-radius: 4px;
