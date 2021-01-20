@@ -20,9 +20,20 @@
     <footer>
       <div class="footer-container">
         <div class="calculator">
-          <input v-model="price" type="number" max="9999" />円 ÷
-          <input v-model="gram" type="number" max="9999" />g =
-          <span class="result">{{ result }}</span
+          <input
+            v-model="price"
+            type="number"
+            max="9999"
+            min="1"
+            inputmode="numeric"
+          />円 ÷
+          <input
+            v-model="gram"
+            type="number"
+            max="9999"
+            min="1"
+            inputmode="numeric"
+          />g = <span class="result">{{ result }}</span
           >円
         </div>
         <div class="button-container">
@@ -36,8 +47,8 @@
           >
             5桁までにしてください
           </span>
-          <span v-show="+price === 0 || +gram === 0" class="error-message">
-            0や空白はダメです
+          <span v-show="+price <= 0 || +gram <= 0" class="error-message">
+            0以下や空白はダメです
           </span>
           <span
             v-show="price && gram && (price.match(/e/) || gram.match(/e/))"
@@ -82,10 +93,10 @@ export default {
       return (
         !this.price ||
         !this.gram ||
-        +this.price === 0 ||
-        +this.gram === 0 ||
-        this.price.toString().length > 5 ||
-        this.gram.toString().length > 5 ||
+        +this.price <= 0 ||
+        +this.gram <= 0 ||
+        this.price.toString().length > 4 ||
+        this.gram.toString().length > 4 ||
         !!this.price.match(/e/) ||
         !!this.gram.match(/e/)
       )
@@ -104,8 +115,8 @@ export default {
         this.formulaList.length > 0 ? this.formulaList.slice(-1)[0].id + 1 : 1
       this.$store.dispatch('addFormula', {
         id,
-        price: this.price,
-        gram: this.gram,
+        price: +this.price,
+        gram: +this.gram,
         result: this.result,
       })
       this.price = undefined
